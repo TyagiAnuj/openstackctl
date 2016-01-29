@@ -13,15 +13,21 @@ if __name__ == '__main__':
 
     project_parser = subparsers.add_parser('project')
     project_parser.set_defaults(func=project_func)
+    projects_parser = subparsers.add_parser('projects')
+    projects_parser.set_defaults(func=projects_func)
     user_parser = subparsers.add_parser('user')
     user_parser.set_defaults(func=user_func)
 
     project_subparsers = project_parser.add_subparsers(dest='subcommand')
+    projects_subparsers = projects_parser.add_subparsers(dest='subcommand')
     user_subparsers = user_parser.add_subparsers(dest='subcommand')
 
 
     project_create_parser = project_subparsers.add_parser('create')
     # project_rm_parser = project_subparsers.add_parser('rm')
+
+    projects_create_parser = projects_subparsers.add_parser('create')
+    # projects_rm_parser = projects_subparsers.add_parser('rm')
 
     user_add_parser = user_subparsers.add_parser('add')
     # user_rm_parser = key_subparsers.add_parser('rm')
@@ -36,6 +42,11 @@ if __name__ == '__main__':
                                        metavar='project_name')
 
 
+    projects_create_parser.add_argument('file', type=str,
+                                        help='Filename of file containing list of projects to be created, along with description.',
+                                       metavar='projectlist')
+
+
     user_add_parser.add_argument('-u', '--user', type=str, required=True,
                                  help='The user to be added.',
                                  metavar='jasper.india', dest='user')
@@ -47,5 +58,4 @@ if __name__ == '__main__':
                                  metavar='user_role', default='user', dest='role')
 
     args = parser.parse_args()
-    print args
     args.func(args)
