@@ -30,7 +30,7 @@ if __name__ == '__main__':
     project_create_parser.add_argument('-d', '--description', type=str, required=False,
                                        help='Description of the project being created.',
                                        metavar='"Snapdeal OpenStack Project"',
-                                       dest='desc')
+                                       default='""', dest='desc')
     project_create_parser.add_argument('project', type=str,
                                        help='The name of the project to be created.',
                                        metavar='project_name')
