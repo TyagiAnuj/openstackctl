@@ -3,8 +3,8 @@
 import os
 import argparse
 
-from openstackuserctl.project import *
-from openstackuserctl.user import *
+from openstackctl.project import *
+from openstackctl.user import *
 
 
 if __name__ == '__main__':
