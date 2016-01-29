@@ -17,10 +17,13 @@ if __name__ == '__main__':
     projects_parser.set_defaults(func=projects_func)
     user_parser = subparsers.add_parser('user')
     user_parser.set_defaults(func=user_func)
+    users_parser = subparsers.add_parser('users')
+    users_parser.set_defaults(func=users_func)
 
     project_subparsers = project_parser.add_subparsers(dest='subcommand')
     projects_subparsers = projects_parser.add_subparsers(dest='subcommand')
     user_subparsers = user_parser.add_subparsers(dest='subcommand')
+    users_subparsers = users_parser.add_subparsers(dest='subcommand')
 
 
     project_create_parser = project_subparsers.add_parser('create')
@@ -31,6 +34,9 @@ if __name__ == '__main__':
 
     user_add_parser = user_subparsers.add_parser('add')
     # user_rm_parser = key_subparsers.add_parser('rm')
+
+    users_create_parser = users_subparsers.add_parser('add')
+    # users_rm_parser = users_subparsers.add_parser('rm')
 
 
     project_create_parser.add_argument('-d', '--description', type=str, required=False,
@@ -49,13 +55,17 @@ if __name__ == '__main__':
 
     user_add_parser.add_argument('-u', '--user', type=str, required=True,
                                  help='The user to be added.',
-                                 metavar='jasper.india', dest='user')
+                                 metavar='firstname.lastname', dest='user')
     user_add_parser.add_argument('-p', '--project', type=str, required=True,
                                  help='The name of the project user is to be added to.',
                                  metavar='project_name', dest='project')
     user_add_parser.add_argument('-r', '--role', type=str, required=False,
                                  help='The role the user is being assigned.',
                                  metavar='user_role', default='user', dest='role')
+
+    users_create_parser.add_argument('file', type=str,
+                                     help='Filename of file containing list of users to be added, along with project name.',
+                                     metavar='userlist_file')
 
     args = parser.parse_args()
     args.func(args)
