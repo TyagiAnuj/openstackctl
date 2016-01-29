@@ -44,7 +44,7 @@ if __name__ == '__main__':
 
     projects_create_parser.add_argument('file', type=str,
                                         help='Filename of file containing list of projects to be created, along with description.',
-                                       metavar='projectlist')
+                                       metavar='projectlist_file')
 
 
     user_add_parser.add_argument('-u', '--user', type=str, required=True,
